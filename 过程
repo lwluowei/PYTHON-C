@@ -1,15 +1,6 @@
 https://blog.csdn.net/l782060902/article/details/121554038
 
-python调用C语言，简单至极
 
-会振刀的程序员
-
-已于 2022-03-07 15:59:47 修改
-
-1072
- 收藏 8
-分类专栏： Python基础 文章标签： python c语言
-版权
 
 Python基础
 
@@ -68,3 +59,8 @@ print(f'python:{time()-start}')
 ————————————————
 版权声明：本文为CSDN博主「会振刀的程序员」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/l782060902/article/details/121554038
+
+调用对象作为参数
+https://www.youtube.com/watch?v=p_LUzwylf-Y
+
+
