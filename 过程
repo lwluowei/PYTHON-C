@@ -1,0 +1,70 @@
+https://blog.csdn.net/l782060902/article/details/121554038
+
+python调用C语言，简单至极
+
+会振刀的程序员
+
+已于 2022-03-07 15:59:47 修改
+
+1072
+ 收藏 8
+分类专栏： Python基础 文章标签： python c语言
+版权
+
+Python基础
+
+python中调用C语言
+首先把文件.c转换成.dll或者.so。
+Windows下Demo亲测一波，话不多说，上图上代码。
+foo.c:
+
+# include<stdio.h>
+
+int foo(){
+	int i,k,m;
+	for(i=0;i<1000;i++){
+		for(k=0;k<1000;k++){
+			for(m=0;m<1000;m++)	{
+			}
+		}
+}
+	return 0; 
+}
+
+将C语言代码保存为.c文件。在当前目录下进入cmd。（前提是有mingw环境，很简单，网上很多教程。）
+执行命令gcc -o foo.so -shared -fPIC foo.c转化为.so文件，gcc foo.c -shared -o foo.dll转化为.dll文件。
+
+python代码
+
+from ctypes import cdll
+from time import time
+
+#.c-->.so
+start=time()
+dll=cdll.LoadLibrary('./foo.so')
+dll.foo()
+print(f'c,so:{time()-start}')
+
+#.c-->.dll
+start=time()
+dll=cdll.LoadLibrary('./foo.dll')
+dll.foo()
+print(f'c,dll:{time()-start}')
+
+#Python
+start=time()
+for i in  range(1000):
+    for k in range(1000):
+        for m in range(1000):
+            pass
+print(f'python:{time()-start}')
+
+
+可以看到；so、dll文件都可在windows环境下供python使用。并且可以看到上述Demo中，C的速度比Python快近20倍。
+我个人比较喜欢Python+C混合编程这种方式，原因主要有几点：
+1、提高性能，弥补了python性能上的不足。
+2、相对安全，对dll文件或so文件进行加密，有效防止逆解析保证代码安全。
+3、结合Python强大的生态环境，也满足了高效快速的开发。
+————————————————
+版权声明：本文为CSDN博主「会振刀的程序员」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/l782060902/article/details/121554038
